@@ -29,6 +29,14 @@
         <js-module src="www/android/IntentPlugin.js" name="IntentPlugin">
             <clobbers target="IntentPlugin" />
         </js-module>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application/activity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SEND_MULTIPLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+        </config-file>
 
         <source-file src="src/android/IntentPlugin.java" target-dir="src/com/napolitano/cordova/plugin/intent" />
 
