@@ -90,9 +90,11 @@ public class IntentPlugin extends CordovaPlugin {
 
         this.onNewIntentCallbackContext = context;
 
-        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        // Send the intent when registering. This allows access to the Intent after a cold start
+        Intent intent = this.cordova.getActivity().getIntent();
+        PluginResult result = new PluginResult(PluginResult.Status.OK, getIntentJson(intent));
         result.setKeepCallback(true);
-        context.sendPluginResult(result);
+        this.onNewIntentCallbackContext.sendPluginResult(result);
         return true;
     }
 
